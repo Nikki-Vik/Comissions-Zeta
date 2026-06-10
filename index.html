@@ -374,7 +374,7 @@ body::before {
 
     <!-- ICON -->
     <div class="card">
-      <img class="card-img" src="images/%2313%20COM.jpg" alt="Icon ejemplo"/>
+      <img class="card-img" src="images/icon-gore.jpg" alt="Icon ejemplo"/>
       <div class="card-body">
         <div class="card-name">Icon</div>
         <div class="variants">
@@ -389,7 +389,7 @@ body::before {
 
     <!-- BUSTO -->
     <div class="card">
-      <img class="card-img" src="images/%2325%20AT.jpg" alt="Sketch color ejemplo"/>
+      <img class="card-img" src="images/sketch-color.jpg" alt="Sketch color ejemplo"/>
       <div class="card-body">
         <div class="card-name">Busto</div>
         <div class="variants">
@@ -404,7 +404,7 @@ body::before {
 
     <!-- HALF BODY -->
     <div class="card">
-      <img class="card-img" src="images/COM%20%2327.jpg" alt="Selfship con fondo ejemplo"/>
+      <img class="card-img" src="images/selfship-fondo.jpg" alt="Selfship con fondo ejemplo"/>
       <div class="card-body">
         <div class="card-name">Half body</div>
         <div class="variants">
@@ -419,7 +419,7 @@ body::before {
 
     <!-- FULL BODY -->
     <div class="card">
-      <img class="card-img" src="images/%2320%20COM.jpg" alt="Full body render ejemplo"/>
+      <img class="card-img" src="images/selfship-halfbody.jpg" alt="Full body render ejemplo"/>
       <div class="card-body">
         <div class="card-name">Full body</div>
         <div class="variants">
@@ -530,7 +530,7 @@ body::before {
     <!-- NSFW -->
     <div class="card">
       <div class="nsfw-wrap">
-        <img class="card-img" src="images/%2312%20AT%20%28II%29.jpg" alt="NSFW ejemplo"/>
+        <img class="card-img" src="images/nsfw-sketch.jpg" alt="NSFW ejemplo"/>
         <div class="nsfw-blur-layer" id="blur-nsfw">
           <span class="nsfw-blur-label">⚠ Contenido +18</span>
           <button class="btn-reveal" onclick="reveal('blur-nsfw')">👁 Ver</button>
@@ -548,7 +548,7 @@ body::before {
     <!-- Selfships -->
     <div class="card">
       <div class="nsfw-wrap">
-        <img class="card-img" src="images/COM%20%2322%20VER%20%232.jpg" alt="Selfship NSFW ejemplo"/>
+        <img class="card-img" src="images/nsfw-selfship.jpg" alt="Selfship NSFW ejemplo"/>
         <div class="nsfw-blur-layer" id="blur-selfship">
           <span class="nsfw-blur-label">⚠ Contenido +18</span>
           <button class="btn-reveal" onclick="reveal('blur-selfship')">👁 Ver</button>
@@ -585,7 +585,7 @@ body::before {
     <!-- Gore -->
     <div class="card">
       <div class="nsfw-wrap">
-        <img class="card-img" src="images/COM%20%2323%20ver%20II.jpg" alt="NSFW full render ejemplo"/>
+        <img class="card-img" src="images/nsfw-render-fondo.jpg" alt="NSFW full render ejemplo"/>
         <div class="nsfw-blur-layer" id="blur-gore">
           <span class="nsfw-blur-label">⚠ Contenido sensible</span>
           <button class="btn-reveal" onclick="reveal('blur-gore')">👁 Ver</button>
@@ -745,7 +745,7 @@ function buildComics() {
               <div class="carousel-slide">
                 ${src
                   ? `<img src="${src}" alt="Página ${si+1}">`
-                  : `<img src="images/DEF%2014.jpg" alt="Comic SFW página" style="width:100%;max-height:520px;object-fit:contain;">`}
+                  : `<img src="images/comic-sfw.jpg" alt="Comic SFW página" style="width:100%;max-height:520px;object-fit:contain;">`}
               </div>`).join('')}
           </div>
           ${panel.isNsfw ? `
