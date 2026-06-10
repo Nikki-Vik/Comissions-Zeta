@@ -98,8 +98,8 @@ body::before {
 .hero-kamon {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%);
-  width: 300px; height: 300px;
-  opacity: .05; pointer-events: none;
+  width: 420px; height: 420px;
+  opacity: .12; pointer-events: none;
 }
 .hero-eyebrow {
   position: relative; font-size: 11px;
@@ -325,6 +325,38 @@ body::before {
   .cur-btn { padding: 8px 14px; font-size: 12px; }
   .grid { grid-template-columns: 1fr; }
 }
+
+/* ── LIGHTBOX ── */
+.card-img, img.card-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  background: var(--bg2);
+  cursor: zoom-in;
+  transition: opacity .2s;
+}
+.card-img:hover { opacity: .9; }
+.lightbox-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.88);
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-overlay img {
+  max-width: 90vw; max-height: 90vh;
+  object-fit: contain; border-radius: 12px;
+  box-shadow: 0 0 60px rgba(93,213,232,.2);
+}
+.lightbox-close {
+  position: absolute; top: 20px; right: 24px;
+  background: none; border: none;
+  color: #fff; font-size: 32px; cursor: pointer;
+  line-height: 1;
+}
 </style>
 </head>
 <body>
@@ -374,7 +406,7 @@ body::before {
 
     <!-- ICON -->
     <div class="card">
-      <img class="card-img" src="images/icon-gore.jpg" alt="Icon ejemplo"/>
+      <img class="card-img" src="images/icon-gore.jpg" alt="Icon ejemplo" onclick="openLightbox('images/icon-gore.jpg')"/>
       <div class="card-body">
         <div class="card-name">Icon</div>
         <div class="variants">
@@ -389,7 +421,7 @@ body::before {
 
     <!-- BUSTO -->
     <div class="card">
-      <img class="card-img" src="images/sketch-color.jpg" alt="Sketch color ejemplo"/>
+      <img class="card-img" src="images/sketch-color.jpg" alt="Sketch color ejemplo" onclick="openLightbox('images/sketch-color.jpg')"/>
       <div class="card-body">
         <div class="card-name">Busto</div>
         <div class="variants">
@@ -404,7 +436,7 @@ body::before {
 
     <!-- HALF BODY -->
     <div class="card">
-      <img class="card-img" src="images/selfship-fondo.jpg" alt="Selfship con fondo ejemplo"/>
+      <img class="card-img" src="images/selfship-fondo.jpg" alt="Selfship con fondo ejemplo" onclick="openLightbox('images/selfship-fondo.jpg')"/>
       <div class="card-body">
         <div class="card-name">Half body</div>
         <div class="variants">
@@ -419,7 +451,7 @@ body::before {
 
     <!-- FULL BODY -->
     <div class="card">
-      <img class="card-img" src="images/selfship-halfbody.jpg" alt="Full body render ejemplo"/>
+      <img class="card-img" src="images/selfship-halfbody.jpg" alt="Full body render ejemplo" onclick="openLightbox('images/selfship-halfbody.jpg')"/>
       <div class="card-body">
         <div class="card-name">Full body</div>
         <div class="variants">
@@ -447,17 +479,7 @@ body::before {
       </div>
     </div>
 
-    <!-- CON FONDO -->
-    <div class="card">
-      <div class="card-img-placeholder">[ ilustración con fondo ]</div>
-      <div class="card-body">
-        <div class="card-name">Con fondo</div>
-        <div class="variants">
-          <div class="v-row"><span class="v-label">Flat color</span>   <span class="v-price t-fondo" data-usd="2"  data-prefix="+"></span></div>
-          <div class="v-row"><span class="v-label">Render bg</span>    <span class="v-price t-fondo" data-usd="4"  data-prefix="+"></span></div>
-        </div>
-      </div>
-    </div>
+    <!-- NOTE: fondo prices as text -->
 
     <!-- REF PERSONAJE -->
     <div class="card">
@@ -471,6 +493,11 @@ body::before {
       </div>
     </div>
 
+  </div>
+  <!-- Fondo note -->
+  <div style="margin-top:14px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 20px; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+    <span style="font-size:16px">🖼️</span>
+    <span><strong style="color:var(--cream); font-weight:500;">¿Quieres fondo?</strong> &nbsp; Flat color <span class="v-price t-fondo" data-usd="2" data-prefix="+" style="display:inline-block;"></span> &nbsp;·&nbsp; Render bg <span class="v-price t-fondo" data-usd="4" data-prefix="+" style="display:inline-block;"></span></span>
   </div>
 
   <!-- ESTILOS DE CUERPO -->
@@ -530,7 +557,7 @@ body::before {
     <!-- NSFW -->
     <div class="card">
       <div class="nsfw-wrap">
-        <img class="card-img" src="images/nsfw-sketch.jpg" alt="NSFW ejemplo"/>
+        <img class="card-img" src="images/nsfw-render-fondo.jpg" alt="NSFW ejemplo" onclick="openLightbox(this.src)"/>
         <div class="nsfw-blur-layer" id="blur-nsfw">
           <span class="nsfw-blur-label">⚠ Contenido +18</span>
           <button class="btn-reveal" onclick="reveal('blur-nsfw')">👁 Ver</button>
@@ -548,7 +575,7 @@ body::before {
     <!-- Selfships -->
     <div class="card">
       <div class="nsfw-wrap">
-        <img class="card-img" src="images/nsfw-selfship.jpg" alt="Selfship NSFW ejemplo"/>
+        <img class="card-img" src="images/nsfw-selfship.jpg" alt="Selfship NSFW ejemplo" onclick="openLightbox('images/nsfw-selfship.jpg')"/>
         <div class="nsfw-blur-layer" id="blur-selfship">
           <span class="nsfw-blur-label">⚠ Contenido +18</span>
           <button class="btn-reveal" onclick="reveal('blur-selfship')">👁 Ver</button>
@@ -585,7 +612,7 @@ body::before {
     <!-- Gore -->
     <div class="card">
       <div class="nsfw-wrap">
-        <img class="card-img" src="images/nsfw-render-fondo.jpg" alt="NSFW full render ejemplo"/>
+        <div class="card-img-placeholder">[ gore example ]</div>
         <div class="nsfw-blur-layer" id="blur-gore">
           <span class="nsfw-blur-label">⚠ Contenido sensible</span>
           <button class="btn-reveal" onclick="reveal('blur-gore')">👁 Ver</button>
@@ -697,7 +724,7 @@ const COMIC_PANELS = [
     label: '📖 SFW — Vol. 1',
     isNsfw: false,
     note: 'Lineart + color plano · fondo simple · descuento por volumen',
-    images: [], // ejemplo: ['pagina1.jpg','pagina2.jpg']
+    images: ['images/comic-sfw.jpg'], // ejemplo: ['pagina1.jpg','pagina2.jpg']
     prices: [
       {pages:'1 pág.',usd:30},{pages:'2 págs.',usd:55},
       {pages:'3 págs.',usd:78},{pages:'4 págs.',usd:100},{pages:'5+ págs.',usd:null}
@@ -806,6 +833,25 @@ function carouselMove(panelIdx, dir) {
 
 buildComics();
 renderPrices();
+</script>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+<script>
+// ── LIGHTBOX ──
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
 </script>
 </body>
 </html>
